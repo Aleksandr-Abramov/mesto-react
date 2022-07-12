@@ -1,13 +1,21 @@
 import React from "react";
 
-function Input({ id, InputClass, name, minlength, maxlength, placeholder, spanText, type }) {
+function Input({
+  id,
+  InputClass,
+  name,
+  minlength,
+  maxlength,
+  placeholder,
+  spanText,
+  type,
+}) {
   return (
     <>
       <input
         type={type}
         id={id}
         className={InputClass}
-        // value="1"
         minLength={minlength}
         maxLength={maxlength}
         placeholder={placeholder}

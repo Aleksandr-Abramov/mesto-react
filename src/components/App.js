@@ -11,7 +11,7 @@ function App() {
   const [isEditProfilePopupOpen, setProfileOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlaceOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(false);
 
 
 
@@ -20,7 +20,7 @@ function App() {
     setProfileOpen(false);
     setAddPlaceOpen(false);
     setEditAvatarOpen(false);
-    setSelectedCard(null);
+    setSelectedCard(false);
   }
 
   function handleEditProfileClick() {
@@ -40,9 +40,8 @@ function App() {
   }
 
   function handleCardClick(card) {
-    if (selectedCard === null) {
+    if (selectedCard === false) {
       setSelectedCard(card);
-      console.log(card._id);
     }
   }
 

@@ -50,7 +50,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         aria-label="Галерея фотографий"
       >
         {cards.map(function (item) {
-          return <Card item={item} key={item._id} onCardClick={onCardClick}/>;
+          return <Card card={item} key={item._id} onCardClick={onCardClick} />;
         })}
       </section>
     </main>
