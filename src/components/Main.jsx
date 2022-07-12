@@ -10,15 +10,25 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [cards, setCards] = useState([]);
 
   React.useEffect(() => {
-    api.getInfoUser().then((res) => {
-      setUserName(res.name);
-      setuserDescription(res.about);
-      setuserAvatar(res.avatar);
-    });
+    api
+      .getInfoUser()
+      .then((res) => {
+        setUserName(res.name);
+        setuserDescription(res.about);
+        setuserAvatar(res.avatar);
+      })
+      .catch((err) =>
+        console.log(`Ошибка при получении данных пользователя:${err}`)
+      );
 
-    api.getInitialCards().then((res) => {
-      setCards(res);
-    });
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((err) =>
+        console.log(`Ошибка при получении данных карточек:${err}`)
+      );
   }, []);
 
   return (
