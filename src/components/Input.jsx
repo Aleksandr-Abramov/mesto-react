@@ -9,10 +9,14 @@ function Input({
   placeholder,
   spanText,
   type,
+  value,
+  onChange,
+  ref
 }) {
   return (
     <>
       <input
+        value={value}
         type={type}
         id={id}
         className={InputClass}
@@ -21,6 +25,8 @@ function Input({
         placeholder={placeholder}
         name={name}
         required
+        onChange={onChange}
+        ref={ref}
       />
       <span className={`${id}-error popup__input-error`}>{spanText}</span>
     </>

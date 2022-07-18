@@ -7,3 +7,8 @@
 .gallery__trash:hover {
   opacity: 0.6;
 }
+
+.gallery__trash_hidden {
+  visibility: hidden;
+  display: block;
+}
