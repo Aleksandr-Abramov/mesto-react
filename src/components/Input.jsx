@@ -11,7 +11,7 @@ function Input({
   type,
   value,
   onChange,
-  ref
+  ref,
 }) {
   return (
     <>

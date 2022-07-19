@@ -1,37 +1,19 @@
 import React from "react";
 import Card from "./Card.jsx";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import api from "../utils/Api.js";
-import { useState } from "react"; 
 
 function Main({
   onEditProfile,
   onAddPlace,
   onEditAvatar,
   onCardClick,
+  avatarLink,
+  cards,
+  handleCardLike,
+  onCardDelete,
 }) {
-
   const userData = React.useContext(CurrentUserContext);
-  const [cards, setCards] = useState([]);
-
-  function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === userData._id);
-
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-  });
-  }
-
-  React.useEffect(() => {
-    api
-    .getInitialCards()
-    .then((res) => {
-      setCards(res);
-    })
-    .catch((err) =>
-      console.log(`Ошибка при получении данных карточек:${err}`)
-    );
-  }, []);
+  const srcAvararLink = `${avatarLink ? avatarLink : userData.avatar}`;
 
   return (
     <main className="main">
@@ -39,7 +21,7 @@ function Main({
         <div className="profile__image-container" onClick={onEditAvatar}>
           <img
             className="profile__image"
-            src={userData.avatar}
+            src={srcAvararLink}
             alt="Жак-Ив Кусто"
           />
         </div>
@@ -70,9 +52,9 @@ function Main({
             <Card
               card={item}
               key={item._id}
-              userData={userData}
               onCardClick={onCardClick}
               onCardLike={handleCardLike}
+              onCardDelete={onCardDelete}
             />
           );
         })}

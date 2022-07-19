@@ -1,16 +1,17 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import Input from "./Input";
 
-function EditAvatarPopup({isOpen, onClose}) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+  const inputRef = React.useRef();
 
-    const inputRef = React.useRef();
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log(inputRef.current.id);
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateAvatar({
+      avatar: inputRef.current.value,
+    });
+  }
   return (
-    <PopupWithForm 
+    <PopupWithForm
       title="Обновить аватар"
       name="avatar-popup"
       modClassForm="popup__form_height"
@@ -19,16 +20,17 @@ function EditAvatarPopup({isOpen, onClose}) {
       closePopup={onClose}
       onSubmit={handleSubmit}
     >
-      <Input
-        id="popup__link-avatar"
-        InputClass="popup__input popup__input_link_js"
+      <input
         type="url"
+        id="popup__link-avatar"
+        className="popup__input popup__input_link_js"
         name="link"
         placeholder="Ссылка на картинку"
-        spanText="поле необходимо заполнить"
         ref={inputRef}
-        
       />
+      <span className="popup__link-avatar-error popup__input-error popup__input-error_margin">
+        поле необходимо заполнить
+      </span>
     </PopupWithForm>
   );
 }
