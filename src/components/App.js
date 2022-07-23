@@ -41,9 +41,14 @@ function App() {
   }, []);
 
   function handleCardLike(card, like) {
-    api.changeLikeCardStatus(card._id, !like).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !like)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.log(`Ошибка при попытки поставить лайк:${err}`));
   }
 
   function closeAllPopups() {
@@ -114,10 +119,11 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
-        const newCards = cards.filter(function (element) {
-          return element._id !== card._id;
+        setCards((prevState) => {
+          return prevState.filter(function (element) {
+            return element._id !== card._id;
+          });
         });
-        setCards([...newCards]);
       })
       .catch((err) =>
         console.log(`Ошибка при получении данных пользователя:${err}`)

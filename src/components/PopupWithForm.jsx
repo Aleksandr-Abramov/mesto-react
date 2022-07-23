@@ -19,7 +19,6 @@ function PopupWithForm({
           }`}
           action="#"
           name={`form-${name}`}
-          noValidate
           onSubmit={onSubmit}
         >
           <h2 className={`popup__title`}>{title}</h2>

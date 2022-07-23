@@ -1,25 +1,29 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import Input from "./Input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function AddPlacePopup({isOpen, closePopup , createCard}) {
-    const [namePlace, setNamePlace] = useState("");
-    const [linkPlace, setLinkPlace] = useState("");
+function AddPlacePopup({ isOpen, closePopup, createCard }) {
+  const [namePlace, setNamePlace] = useState("");
+  const [linkPlace, setLinkPlace] = useState("");
 
-    function handleChangeNamePlace(e) {
-        setNamePlace(e.target.value)
-    }
+  function handleChangeNamePlace(e) {
+    setNamePlace(e.target.value);
+  }
 
-    function handleChangelinkPlace(e) {
-        setLinkPlace(e.target.value)
-    }
-    function addDataCard(e) {
-        e.preventDefault();
-        createCard({name:namePlace, link:linkPlace});
-        setNamePlace("");
-        setLinkPlace("");
-    }
+  function handleChangelinkPlace(e) {
+    setLinkPlace(e.target.value);
+  }
+  function addDataCard(e) {
+    e.preventDefault();
+    createCard({ name: namePlace, link: linkPlace });
+  }
+
+  useEffect(() => {
+    setNamePlace("");
+    setLinkPlace("");
+  }, [isOpen, closePopup]);
+
   return (
     <PopupWithForm
       title="Новое место"

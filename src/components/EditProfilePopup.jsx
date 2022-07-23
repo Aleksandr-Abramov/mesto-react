@@ -28,7 +28,7 @@ function EditProfilePopup({ isOpen, closePopup, onUpdateUser }) {
   React.useEffect(() => {
     setName(userData.name);
     setDescription(userData.about);
-  }, [userData]);
+  }, [userData, isOpen]);
 
   return (
     <PopupWithForm
@@ -48,7 +48,7 @@ function EditProfilePopup({ isOpen, closePopup, onUpdateUser }) {
         maxlength="40"
         placeholder="Имя"
         spanText="поле необходимо заполнить"
-        value={name}
+        value={name || ""}
         onChange={handleChangeName}
       />
       <Input
